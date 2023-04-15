@@ -11,6 +11,8 @@ app.get("/my-ip", function (req: any, res: any) {
   var forwardedIpsStr =
     req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   console.log(forwardedIpsStr);
+
+  res.send(forwardedIpsStr);
 });
 
 if (!module.parent) {
