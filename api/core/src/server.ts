@@ -1,40 +1,22 @@
+import express from "express";
 
-import express from 'express';
-
+var PORT = process.env.PORT || 3000;
 var app = express();
 
-const users = [
-  {
-      id: 1,
-      name: "Lucas"
-  },
-  {
-      id: 2,
-      name: "Eric"
-  },
-  {
-      id: 3,
-      name: "Ana"
-  },
-];
-
-
-app.get('/', function(req:any, res:any){
-  res.send('Hello!');
+app.get("/", function (req: any, res: any) {
+  res.send("Hello!");
 });
 
-app.get('/users', function(req:any, res:any){
-  res.send(users);
-});
-
-app.get('/users/:userId', function(req:any, res:any){
-  const user = users.filter((user) => user.id == req.params.userId);
-  res.send(user);
+app.get("/my-ip", function (req: any, res: any) {
+  var forwardedIpsStr =
+    req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  console.log(forwardedIpsStr);
 });
 
 if (!module.parent) {
-  app.listen(3000);
-  console.log('Express started on port 3000');
+  app.listen(PORT);
+  console.log(`Express started on port ${PORT}`);
 }
 
 export default app;
+
