@@ -7,11 +7,12 @@ const express_1 = __importDefault(require("express"));
 var PORT = process.env.PORT || 3000;
 var app = (0, express_1.default)();
 app.get("/", function (req, res) {
-    res.send("Hello!");
+    res.send("My IP Adress!");
 });
 app.get("/my-ip", function (req, res) {
     var forwardedIpsStr = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     console.log(forwardedIpsStr);
+    res.send(forwardedIpsStr);
 });
 if (!module.parent) {
     app.listen(PORT);

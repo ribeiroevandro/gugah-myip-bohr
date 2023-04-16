@@ -4,7 +4,7 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 
 app.get("/", function (req: any, res: any) {
-  res.send("Hello!");
+  res.send("My IP Adress!");
 });
 
 app.get("/my-ip", function (req: any, res: any) {
